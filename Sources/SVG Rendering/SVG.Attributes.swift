@@ -5,7 +5,7 @@
 //  Created by Coen ten Thije Boonkkamp
 //
 
-import Formatting
+import Format_Primitives
 public import SVG_Standard
 
 // MARK: - Presentation Attributes

@@ -5,7 +5,7 @@
 //  Created by Coen ten Thije Boonkkamp on 26/11/2025.
 //
 
-import INCITS_4_1986
+import ASCII_Primitives
 
 /// Represents plain text content in SVG, with proper XML escaping.
 ///
@@ -40,15 +40,15 @@ extension SVG {
             buffer.reserveCapacity(buffer.count + svg.text.utf8.count)
             for byte in svg.text.utf8 {
                 switch byte {
-                case UInt8.ascii.ampersand:
+                case ASCII.Character.Graphic.ampersand:
                     buffer.append(contentsOf: "&amp;".utf8)
-                case UInt8.ascii.lt:
+                case ASCII.Character.Graphic.lessThanSign:
                     buffer.append(contentsOf: "&lt;".utf8)
-                case UInt8.ascii.gt:
+                case ASCII.Character.Graphic.greaterThanSign:
                     buffer.append(contentsOf: "&gt;".utf8)
-                case UInt8.ascii.dquote:
+                case ASCII.Character.Graphic.quotationMark:
                     buffer.append(contentsOf: "&quot;".utf8)
-                case UInt8.ascii.apostrophe:
+                case ASCII.Character.Graphic.apostrophe:
                     buffer.append(contentsOf: "&apos;".utf8)
                 default:
                     buffer.append(byte)

@@ -5,7 +5,7 @@
 //  Created by Coen ten Thije Boonkkamp on 26/11/2025.
 //
 
-public import Rendering
+public import Render_Primitives
 
 extension RangeReplaceableCollection<UInt8> {
     /// Creates a byte collection from rendered SVG.

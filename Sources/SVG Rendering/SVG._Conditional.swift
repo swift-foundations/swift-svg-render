@@ -1,13 +1,21 @@
 //
 //  SVG._Conditional.swift
-//  swift-svg-renderable
-//
-//  Created by Coen ten Thije Boonkkamp on 26/11/2025.
+//  swift-svg-rendering
 //
 
-public import Rendering
+public import Render_Primitives
 
-// Extend the _Conditional type from Rendering module to conform to SVG.View
-// Note: _Conditional is a top-level type exported from the Rendering module.
-// Users can access it as _Conditional<First, Second> directly, not through SVG._Conditional.
-extension _Conditional: SVG.View where First: SVG.View, Second: SVG.View {}
+extension Render.Conditional: SVG.View where First: SVG.View, Second: SVG.View {
+    public var body: Never { fatalError() }
+
+    public static func _render<Buffer: RangeReplaceableCollection>(
+        _ svg: Self,
+        into buffer: inout Buffer,
+        context: inout SVG.Context
+    ) where Buffer.Element == UInt8 {
+        switch svg {
+        case .first(let first): First._render(first, into: &buffer, context: &context)
+        case .second(let second): Second._render(second, into: &buffer, context: &context)
+        }
+    }
+}

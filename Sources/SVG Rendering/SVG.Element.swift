@@ -1,31 +1,13 @@
 //
 //  SVG.Element.swift
-//  swift-svg-renderable
-//
-//  Created by Coen ten Thije Boonkkamp
+//  swift-svg-rendering
 //
 
-import INCITS_4_1986
-import OrderedCollections
-import Rendering
+import ASCII_Primitives
+import Dictionary_Ordered_Primitives
 
 extension SVG {
     /// Represents an SVG element with a tag, attributes, and optional content.
-    ///
-    /// `SVG.Element` is a fundamental building block in the SVG Renderable library,
-    /// representing a standard SVG element with a tag name, attributes, and optional
-    /// child content. This type handles the rendering of both opening and closing tags,
-    /// attribute formatting, and proper indentation.
-    ///
-    /// Example:
-    /// ```swift
-    /// let element = SVG.Element(tag: "circle") {
-    ///     // child content
-    /// }
-    /// ```
-    ///
-    /// This type is typically not used directly by library consumers, who would
-    /// instead use the W3C SVG types with callAsFunction extensions.
     public struct Element<Content: SVG.View>: SVG.View {
         /// The SVG tag name (e.g., "circle", "rect", "path").
         let tag: String
@@ -34,11 +16,6 @@ extension SVG {
         @SVG.Builder public let content: Content?
 
         /// Creates a new SVG element with the specified tag and content.
-        ///
-        /// - Parameters:
-        ///   - tag: The SVG tag name (e.g., "circle", "rect", "path").
-        ///   - content: A closure that returns the content of this element.
-        ///              If no content is provided, the element will be empty.
         public init(tag: String, @SVG.Builder content: () -> Content? = { Never?.none }) {
             self.tag = tag
             self.content = content()
@@ -57,39 +34,39 @@ extension SVG {
             buffer.append(contentsOf: context.currentIndentation)
 
             // Write opening tag
-            buffer.append(.ascii.lessThanSign)
+            buffer.append(ASCII.Character.Graphic.lessThanSign)
             buffer.append(contentsOf: svg.tag.utf8)
 
             // Add attributes from context (set via method chaining like .fill(), .cx(), etc.)
-            for (name, value) in context.attributes {
-                buffer.append(.ascii.space)
+            context.attributes.forEach { name, value in
+                buffer.append(ASCII.SPACE.sp)
                 buffer.append(contentsOf: name.utf8)
                 if !value.isEmpty {
-                    buffer.append(.ascii.equalsSign)
-                    buffer.append(.ascii.dquote)
+                    buffer.append(ASCII.Character.Graphic.equalsSign)
+                    buffer.append(ASCII.Character.Graphic.quotationMark)
 
                     // Single-pass: iterate directly over UTF-8 view, escape as needed
                     for byte in value.utf8 {
                         switch byte {
-                        case .ascii.dquote:
+                        case ASCII.Character.Graphic.quotationMark:
                             buffer.append(contentsOf: [UInt8].svg.doubleQuotationMark)
-                        case .ascii.apostrophe:
+                        case ASCII.Character.Graphic.apostrophe:
                             buffer.append(contentsOf: [UInt8].svg.apostrophe)
-                        case .ascii.ampersand:
+                        case ASCII.Character.Graphic.ampersand:
                             buffer.append(contentsOf: [UInt8].svg.ampersand)
-                        case .ascii.lessThanSign:
+                        case ASCII.Character.Graphic.lessThanSign:
                             buffer.append(contentsOf: [UInt8].svg.lessThan)
-                        case .ascii.greaterThanSign:
+                        case ASCII.Character.Graphic.greaterThanSign:
                             buffer.append(contentsOf: [UInt8].svg.greaterThan)
                         default:
                             buffer.append(byte)
                         }
                     }
 
-                    buffer.append(.ascii.dquote)
+                    buffer.append(ASCII.Character.Graphic.quotationMark)
                 }
             }
-            buffer.append(.ascii.greaterThanSign)
+            buffer.append(ASCII.Character.Graphic.greaterThanSign)
 
             // Render content if present
             if let content = svg.content {
@@ -107,10 +84,10 @@ extension SVG {
             // Add closing tag (SVG elements are not void/self-closing in the HTML sense)
             buffer.append(contentsOf: context.configuration.newline)
             buffer.append(contentsOf: context.currentIndentation)
-            buffer.append(.ascii.lessThanSign)
-            buffer.append(.ascii.slant)
+            buffer.append(ASCII.Character.Graphic.lessThanSign)
+            buffer.append(ASCII.Character.Graphic.slant)
             buffer.append(contentsOf: svg.tag.utf8)
-            buffer.append(.ascii.greaterThanSign)
+            buffer.append(ASCII.Character.Graphic.greaterThanSign)
         }
 
         /// This type uses direct rendering and doesn't have a body.
@@ -129,27 +106,27 @@ extension [UInt8] {
     public enum svg {
         /// The escaped representation of a double quotation mark (`"`).
         public static let doubleQuotationMark: [UInt8] = [
-            .ascii.ampersand, .ascii.q, .ascii.u, .ascii.o, .ascii.t, .ascii.semicolon,
+            ASCII.Character.Graphic.ampersand, ASCII.Character.Graphic.q, ASCII.Character.Graphic.u, ASCII.Character.Graphic.o, ASCII.Character.Graphic.t, ASCII.Character.Graphic.semicolon,
         ]
 
         /// The escaped representation of an apostrophe (`'`).
         public static let apostrophe: [UInt8] = [
-            .ascii.ampersand, .ascii.a, .ascii.p, .ascii.o, .ascii.s, .ascii.semicolon,
+            ASCII.Character.Graphic.ampersand, ASCII.Character.Graphic.a, ASCII.Character.Graphic.p, ASCII.Character.Graphic.o, ASCII.Character.Graphic.s, ASCII.Character.Graphic.semicolon,
         ]
 
         /// The escaped representation of an ampersand (`&`).
         public static let ampersand: [UInt8] = [
-            .ascii.ampersand, .ascii.a, .ascii.m, .ascii.p, .ascii.semicolon,
+            ASCII.Character.Graphic.ampersand, ASCII.Character.Graphic.a, ASCII.Character.Graphic.m, ASCII.Character.Graphic.p, ASCII.Character.Graphic.semicolon,
         ]
 
         /// The escaped representation of a less-than sign (`<`).
         public static let lessThan: [UInt8] = [
-            .ascii.ampersand, .ascii.l, .ascii.t, .ascii.semicolon,
+            ASCII.Character.Graphic.ampersand, ASCII.Character.Graphic.l, ASCII.Character.Graphic.t, ASCII.Character.Graphic.semicolon,
         ]
 
         /// The escaped representation of a greater-than sign (`>`).
         public static let greaterThan: [UInt8] = [
-            .ascii.ampersand, .ascii.g, .ascii.t, .ascii.semicolon,
+            ASCII.Character.Graphic.ampersand, ASCII.Character.Graphic.g, ASCII.Character.Graphic.t, ASCII.Character.Graphic.semicolon,
         ]
     }
 }

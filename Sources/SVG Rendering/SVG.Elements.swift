@@ -5,7 +5,8 @@
 //  callAsFunction extensions for W3C SVG types
 //
 
-import Formatting
+import Format_Primitives
+import Dictionary_Ordered_Primitives
 public import SVG_Standard
 
 // MARK: - Basic Shapes
@@ -369,25 +370,25 @@ extension SVG_Standard.Scripting.Switch {
 extension SVG.View {
     /// Sets the id attribute if value is not nil.
     func id(_ value: String?) -> SVG._Attributes<Self> {
-        guard let value else { return SVG._Attributes(content: self, attributes: [:]) }
+        guard let value else { return SVG._Attributes(content: self, attributes: .init()) }
         return attribute("id", value)
     }
 
     /// Sets the fill-rule attribute from a string value.
     func fillRule(_ value: String?) -> SVG._Attributes<Self> {
-        guard let value else { return SVG._Attributes(content: self, attributes: [:]) }
+        guard let value else { return SVG._Attributes(content: self, attributes: .init()) }
         return attribute("fill-rule", value)
     }
 
     /// Sets the cx attribute for gradients (String version).
     func cx(_ value: String?) -> SVG._Attributes<Self> {
-        guard let value else { return SVG._Attributes(content: self, attributes: [:]) }
+        guard let value else { return SVG._Attributes(content: self, attributes: .init()) }
         return attribute("cx", value)
     }
 
     /// Sets the cy attribute for gradients (String version).
     func cy(_ value: String?) -> SVG._Attributes<Self> {
-        guard let value else { return SVG._Attributes(content: self, attributes: [:]) }
+        guard let value else { return SVG._Attributes(content: self, attributes: .init()) }
         return attribute("cy", value)
     }
 }
@@ -397,22 +398,10 @@ extension SVG.View {
 // Geometry types conform to SVG.View for direct DSL usage, and also provide .svg
 // for explicit SVG-specific operations (transforms, etc.) separate from math operations.
 
-extension Geometry.Ball: @retroactive Rendering.`Protocol`
-where Scalar == Double, Space == W3C_SVG.Space, N == 2 {
-    public typealias Context = SVG.Context
-    public typealias Output = UInt8
-}
-
 extension Geometry.Ball: SVG.View where Scalar == Double, Space == W3C_SVG.Space, N == 2 {
     public var body: some SVG.View {
         svg
     }
-}
-
-extension Geometry.Orthotope: @retroactive Rendering.`Protocol`
-where Scalar == Double, Space == W3C_SVG.Space, N == 2 {
-    public typealias Context = SVG.Context
-    public typealias Output = UInt8
 }
 
 extension Geometry.Orthotope: SVG.View where Scalar == Double, Space == W3C_SVG.Space, N == 2 {
@@ -421,34 +410,16 @@ extension Geometry.Orthotope: SVG.View where Scalar == Double, Space == W3C_SVG.
     }
 }
 
-extension Geometry.Ellipse: @retroactive Rendering.`Protocol`
-where Scalar == Double, Space == W3C_SVG.Space {
-    public typealias Context = SVG.Context
-    public typealias Output = UInt8
-}
-
 extension Geometry.Ellipse: SVG.View where Scalar == Double, Space == W3C_SVG.Space {
     public var body: some SVG.View {
         svg
     }
 }
 
-extension Geometry.Line.Segment: @retroactive Rendering.`Protocol`
-where Scalar == Double, Space == W3C_SVG.Space {
-    public typealias Context = SVG.Context
-    public typealias Output = UInt8
-}
-
 extension Geometry.Line.Segment: SVG.View where Scalar == Double, Space == W3C_SVG.Space {
     public var body: some SVG.View {
         svg
     }
-}
-
-extension Geometry.Polygon: @retroactive Rendering.`Protocol`
-where Scalar == Double, Space == W3C_SVG.Space {
-    public typealias Context = SVG.Context
-    public typealias Output = UInt8
 }
 
 extension Geometry.Polygon: SVG.View where Scalar == Double, Space == W3C_SVG.Space {

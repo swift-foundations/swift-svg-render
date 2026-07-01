@@ -1,81 +1,132 @@
-// swift-tools-version: 6.2
+// swift-tools-version: 6.3.1
 
 import PackageDescription
 
 extension String {
-    static let svgRendering = "SVG Rendering"
+    static let svgRendering: Self = "SVG Rendering"
+    var tests: Self { self + " Tests" }
 }
 
 extension Target.Dependency {
-    static let svgRendering: Self = .target(name: .svgRendering)
+    static var svgRendering: Self { .target(name: .svgRendering) }
 }
 
 extension Target.Dependency {
-    static let renderable: Self = .product(name: "Rendering", package: "swift-renderable")
-    static let renderableAsync: Self = .product(name: "RenderingAsync", package: "swift-renderable")
-    static let svgStandard: Self = .product(name: "SVG Standard", package: "swift-svg-standard")
-    static let orderedCollections: Self = .product(
-        name: "OrderedCollections",
-        package: "swift-collections"
-    )
-    static let dependencies: Self = .product(name: "Dependencies", package: "swift-dependencies")
-    static let incits4_1986: Self = .product(name: "INCITS 4 1986", package: "swift-incits-4-1986")
-    static let formatting: Self = .product(name: "Formatting", package: "swift-standards")
-    static let dimension: Self = .product(name: "Dimension", package: "swift-standards")
+    static var renderingPrimitives: Self {
+        .product(name: "Render Primitives", package: "swift-render-primitives")
+    }
+    static var svgStandard: Self {
+        .product(name: "SVG Standard", package: "swift-svg-standard")
+    }
+    static var asciiPrimitives: Self {
+        .product(name: "ASCII Primitives", package: "swift-ascii-primitives")
+    }
+    static var formatting: Self {
+        .product(name: "Format Primitives", package: "swift-format-primitives")
+    }
+    static var dimension: Self {
+        .product(name: "Dimension Primitives", package: "swift-dimension-primitives")
+    }
+    static var dictionaryPrimitives: Self {
+        .product(name: "Dictionary Primitives", package: "swift-dictionary-primitives")
+    }
+    static var sharedPrimitive: Self {
+        .product(name: "Shared Primitive", package: "swift-shared-primitives")
+    }
+    static var hashIndexedPrimitive: Self {
+        .product(name: "Hash Indexed Primitive", package: "swift-hash-table-primitives")
+    }
+    static var columnPrimitives: Self {
+        .product(name: "Column Primitives", package: "swift-column-primitives")
+    }
+    static var hashPrimitives: Self {
+        .product(name: "Hash Primitives", package: "swift-hash-primitives")
+    }
+    static var bufferLinearPrimitive: Self {
+        .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear-primitives")
+    }
 }
 
 let package = Package(
-    name: "swift-svg-rendering",
+    name: "swift-svg-render",
     platforms: [
         .macOS(.v26),
         .iOS(.v26),
         .tvOS(.v26),
         .watchOS(.v26),
+        .visionOS(.v26),
     ],
     products: [
-        .library(name: .svgRendering, targets: [.svgRendering])
+        .library(name: .svgRendering, targets: [.svgRendering]),
+        .library(name: "SVG Rendering Test Support", targets: ["SVG Rendering Test Support"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/coenttb/swift-renderable", from: "3.2.0"),
-        .package(url: "https://github.com/swift-standards/swift-svg-standard.git", from: "0.3.0"),
-        .package(url: "https://github.com/swift-standards/swift-standards", from: "0.16.0"),
-        .package(url: "https://github.com/swift-standards/swift-incits-4-1986", from: "0.6.5"),
-        .package(url: "https://github.com/apple/swift-collections", from: "1.1.0"),
-        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.18.0"),
+        .package(url: "https://github.com/swift-primitives/swift-render-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-standards/swift-svg-standard.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-format-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-dimension-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-ascii-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-dictionary-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-dictionary-ordered-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-shared-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-hash-table-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-column-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-hash-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-buffer-linear-primitives.git", branch: "main"),
     ],
     targets: [
         .target(
             name: .svgRendering,
             dependencies: [
-                .renderable,
-                .renderableAsync,
+                .renderingPrimitives,
                 .svgStandard,
-                .incits4_1986,
+                .asciiPrimitives,
                 .formatting,
                 .dimension,
-                .orderedCollections,
+                .dictionaryPrimitives,
+                .product(name: "Dictionary Ordered Primitives", package: "swift-dictionary-ordered-primitives"),
+                .sharedPrimitive,
+                .hashIndexedPrimitive,
+                .columnPrimitives,
+                .hashPrimitives,
+                .bufferLinearPrimitive,
             ]
+        ),
+        .target(
+            name: "SVG Rendering Test Support",
+            dependencies: [
+                .svgRendering,
+                .product(name: "Dimension Primitives Test Support", package: "swift-dimension-primitives"),
+            ],
+            path: "Tests/Support"
         ),
         .testTarget(
             name: .svgRendering.tests,
             dependencies: [
                 .svgRendering,
-                .product(name: "InlineSnapshotTesting", package: "swift-snapshot-testing"),
-            ]
+                "SVG Rendering Test Support",
+            ],
+            path: "Tests/SVG Rendering Tests"
         ),
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )
 
-extension String {
-    var tests: Self { self + " Tests" }
-}
+for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
+    let ecosystem: [SwiftSetting] = [
+        .strictMemorySafety(),
+        .enableUpcomingFeature("ExistentialAny"),
+        .enableUpcomingFeature("InternalImportsByDefault"),
+        .enableUpcomingFeature("MemberImportVisibility"),
+        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+        .enableExperimentalFeature("LifetimeDependence"),
+        .enableExperimentalFeature("Lifetimes"),
+        .enableExperimentalFeature("SuppressedAssociatedTypes"),
+        .enableUpcomingFeature("InferIsolatedConformances"),
+        .enableUpcomingFeature("LifetimeDependence"),
+    ]
 
-for target in package.targets where ![.system, .binary, .plugin].contains(target.type) {
-    let existing = target.swiftSettings ?? []
-    target.swiftSettings =
-        existing + [
-            .enableUpcomingFeature("ExistentialAny"),
-            .enableUpcomingFeature("InternalImportsByDefault"),
-            .enableUpcomingFeature("MemberImportVisibility"),
-        ]
+    let package: [SwiftSetting] = []
+
+    target.swiftSettings = (target.swiftSettings ?? []) + ecosystem + package
 }
