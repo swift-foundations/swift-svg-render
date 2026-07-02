@@ -1,6 +1,6 @@
 # .github/metadata.yaml
 # Triaged by AI-assisted bulk pass (2026-04-29).
-description: "SVG render for Swift."
+description: "A result-builder DSL for rendering W3C SVG Standard documents to bytes or strings in Swift."
 topics:
   - foundations
   - svg
