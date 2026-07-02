@@ -84,7 +84,7 @@ Importing `SVG Rendering` re-exports `SVG Standard`, `Render Primitives`, `Forma
 ## Community
 
 <!-- BEGIN: discussion -->
-*Discussion thread will be created at first public flip.*
+*Discussion thread will be created at first public release.*
 <!-- END: discussion -->
 
 ## License
