@@ -3,10 +3,10 @@
 //  swift-svg-rendering
 //
 
-import Dimension_Primitives
-public import Render_Primitives
 public import Dictionary_Ordered_Primitives
+import Dimension_Primitives
 import Format_Primitives
+public import Render_Primitives
 
 /// A namespace for SVG-related types.
 public enum SVG {}
@@ -24,7 +24,7 @@ extension SVG {
     }
 }
 
-extension SVG.View where Content: SVG.View {
+extension SVG.View where Content: Self {
     @inlinable
     @_disfavoredOverload
     public static func _render<Buffer: RangeReplaceableCollection>(

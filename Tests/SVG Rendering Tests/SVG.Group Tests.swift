@@ -18,19 +18,23 @@ enum SVGGroupTests {
 
             @Test
             func `composes children sequentially`() {
-                let string = render(SVG.Group {
-                    SVG.Text("Hello")
-                    SVG.Text(" ")
-                    SVG.Text("World")
-                })
+                let string = render(
+                    SVG.Group {
+                        SVG.Text("Hello")
+                        SVG.Text(" ")
+                        SVG.Text("World")
+                    }
+                )
                 #expect(string == "Hello World")
             }
 
             @Test
             func `single child passes through`() {
-                let string = render(SVG.Group {
-                    SVG.Text("Only")
-                })
+                let string = render(
+                    SVG.Group {
+                        SVG.Text("Only")
+                    }
+                )
                 #expect(string == "Only")
             }
         }
@@ -39,9 +43,11 @@ enum SVGGroupTests {
 
             @Test
             func `empty group renders nothing`() {
-                let string = render(SVG.Group {
-                    SVG.Empty()
-                })
+                let string = render(
+                    SVG.Group {
+                        SVG.Empty()
+                    }
+                )
                 #expect(string.isEmpty)
             }
         }

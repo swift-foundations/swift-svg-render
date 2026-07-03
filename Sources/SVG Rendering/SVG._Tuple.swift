@@ -6,7 +6,7 @@
 public import Render_Primitives
 
 extension Render._Tuple: SVG.View where repeat each Content: SVG.View {
-    public var body: Never { fatalError() }
+    public var body: Never { fatalError("body should not be called") }
 
     public static func _render<Buffer: RangeReplaceableCollection>(
         _ svg: Self,

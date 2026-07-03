@@ -6,7 +6,6 @@
 import SVG_Rendering_Test_Support
 import Testing
 
-
 extension SVG.Context {
     @Suite struct Test {
         @Suite struct Unit {

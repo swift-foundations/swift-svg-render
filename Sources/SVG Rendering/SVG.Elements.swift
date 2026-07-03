@@ -5,8 +5,8 @@
 //  callAsFunction extensions for W3C SVG types
 //
 
-import Format_Primitives
 import Dictionary_Ordered_Primitives
+import Format_Primitives
 public import SVG_Standard
 
 // MARK: - Basic Shapes

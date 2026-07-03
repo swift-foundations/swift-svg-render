@@ -42,14 +42,19 @@ extension SVG {
                 switch byte {
                 case ASCII.Character.Graphic.ampersand:
                     buffer.append(contentsOf: "&amp;".utf8)
+
                 case ASCII.Character.Graphic.lessThanSign:
                     buffer.append(contentsOf: "&lt;".utf8)
+
                 case ASCII.Character.Graphic.greaterThanSign:
                     buffer.append(contentsOf: "&gt;".utf8)
+
                 case ASCII.Character.Graphic.quotationMark:
                     buffer.append(contentsOf: "&quot;".utf8)
+
                 case ASCII.Character.Graphic.apostrophe:
                     buffer.append(contentsOf: "&apos;".utf8)
+
                 default:
                     buffer.append(byte)
                 }

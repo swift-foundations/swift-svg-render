@@ -3,8 +3,8 @@
 //  swift-svg-rendering
 //
 
-public import Render_Primitives
 public import Dictionary_Ordered_Primitives
+public import Render_Primitives
 
 /// A wrapper that adds attributes to an SVG element.
 extension SVG {

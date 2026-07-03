@@ -29,7 +29,10 @@ extension SVG.Test.Performance {
 
     @Test(.timed(iterations: 100, warmup: 10))
     func `render long text`() {
-        let content = String(repeating: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ", count: 50)
+        let content = String(
+            repeating: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+            count: 50
+        )
         let text = SVG.Text(content)
         let _ = [UInt8](text)
     }
@@ -48,7 +51,8 @@ extension SVG.Test.Performance {
     @Test(.timed(iterations: 500, warmup: 50))
     func `render element with attributes`() {
         let element = SVG.Element(tag: "circle") { SVG.Empty() }
-        let styled = element
+        let styled =
+            element
             .cx(50.0 as Double)
             .cy(50.0 as Double)
             .r(40.0 as Double)
@@ -101,7 +105,8 @@ extension SVG.Test.Performance {
     @Test(.timed(iterations: 500, warmup: 50))
     func `chain 5 presentation attributes`() {
         let circle = SVG.Element(tag: "circle") { SVG.Empty() }
-        let styled = circle
+        let styled =
+            circle
             .fill("red")
             .stroke("black")
             .strokeWidth(2)

@@ -6,8 +6,8 @@
 //  Holds state (attributes, indentation) separate from the output buffer.
 //
 
-public import Render_Primitives
 public import Dictionary_Ordered_Primitives
+public import Render_Primitives
 
 extension SVG {
     public struct Context: Sendable {
@@ -40,8 +40,8 @@ extension SVG.Context {
             self.newline = Array(newline.utf8)
         }
 
-        public static let `default` = Configuration()
-        public static let pretty = Configuration(indentation: "  ", newline: "\n")
+        public static let `default` = Self()
+        public static let pretty = Self(indentation: "  ", newline: "\n")
     }
 }
 

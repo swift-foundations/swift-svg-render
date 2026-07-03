@@ -32,9 +32,11 @@ extension SVG.AnyView {
 
             @Test
             func `closure initializer works`() {
-                let string = render(SVG.AnyView {
-                    SVG.Text("From closure")
-                })
+                let string = render(
+                    SVG.AnyView {
+                        SVG.Text("From closure")
+                    }
+                )
                 #expect(string == "From closure")
             }
         }

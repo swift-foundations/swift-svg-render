@@ -6,8 +6,8 @@
 //  All SVG rendering goes through .svg accessor, keeping geometry types pure math.
 //
 
-import Format_Primitives
 import Dictionary_Ordered_Primitives
+import Format_Primitives
 public import SVG_Standard
 
 // MARK: - Circle SVGContext
@@ -48,7 +48,8 @@ where Scalar == Double, Space == W3C_SVG.Space, N == 2 {
     }
 
     /// Applies an SVG rotate transform around a center point.
-    public func rotated(by angle: W3C_SVG2.Degrees, around center: W3C_SVG2.Point) -> some SVG.View {
+    public func rotated(by angle: W3C_SVG2.Degrees, around center: W3C_SVG2.Point) -> some SVG.View
+    {
         self.rotate(angle.underlying, cx: center.x.underlying, cy: center.y.underlying)
     }
 }
@@ -86,7 +87,8 @@ where Scalar == Double, Space == W3C_SVG.Space, N == 2 {
     }
 
     /// Applies an SVG rotate transform around a center point.
-    public func rotated(by angle: W3C_SVG2.Degrees, around center: W3C_SVG2.Point) -> some SVG.View {
+    public func rotated(by angle: W3C_SVG2.Degrees, around center: W3C_SVG2.Point) -> some SVG.View
+    {
         self.rotate(angle.underlying, cx: center.x.underlying, cy: center.y.underlying)
     }
 

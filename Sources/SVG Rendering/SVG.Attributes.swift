@@ -92,7 +92,7 @@ extension SVG.View {
         cx: Double? = nil,
         cy: Double? = nil
     ) -> SVG._Attributes<Self> {
-        if let cx = cx, let cy = cy {
+        if let cx, let cy {
             return attribute(
                 "transform",
                 "rotate(\(angle.formatted(.number)), \(cx.formatted(.number)), \(cy.formatted(.number)))"
@@ -103,7 +103,7 @@ extension SVG.View {
 
     /// Applies a scale transform to the SVG element.
     public func scale(x: Double, y: Double? = nil) -> SVG._Attributes<Self> {
-        if let y = y {
+        if let y {
             return attribute("transform", "scale(\(x.formatted(.number)), \(y.formatted(.number)))")
         }
         return attribute("transform", "scale(\(x.formatted(.number)))")
