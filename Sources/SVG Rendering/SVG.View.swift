@@ -24,7 +24,7 @@ extension SVG {
     }
 }
 
-extension SVG.View where Content: Self {
+extension SVG.View where Content: SVG.View {
     @inlinable
     @_disfavoredOverload
     public static func _render<Buffer: RangeReplaceableCollection>(
