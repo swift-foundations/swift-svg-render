@@ -3,6 +3,7 @@
 //  swift-svg-rendering
 //
 
+import Dictionary_Ordered_Primitives
 import SVG_Rendering_Test_Support
 import Testing
 
