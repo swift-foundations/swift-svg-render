@@ -24,6 +24,11 @@ extension SVG {
     }
 }
 
+// reason: `Content: Self` here is not valid Swift in this where-clause
+// conformance position ("type 'Self.Content' constrained to non-protocol,
+// non-class type 'Self'") — confirmed by CI breakage across this package
+// and downstream swift-pdf when swiftlint --fix applied it (commit 60e00fd).
+// swiftlint:disable:next prefer_self_in_static_references
 extension SVG.View where Content: SVG.View {
     @inlinable
     @_disfavoredOverload
