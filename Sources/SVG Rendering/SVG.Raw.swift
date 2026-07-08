@@ -23,16 +23,18 @@ extension SVG {
         public init(_ content: String) {
             self.content = content
         }
-
-        /// Renders the raw content directly into the buffer.
-        public static func _render<Buffer: RangeReplaceableCollection>(
-            _ svg: Self,
-            into buffer: inout Buffer,
-            context: inout SVG.Context
-        ) where Buffer.Element == UInt8 {
-            buffer.append(contentsOf: svg.content.utf8)
-        }
-
-        public var body: Never { fatalError("body should not be called") }
     }
+}
+
+extension SVG.Raw {
+    /// Renders the raw content directly into the buffer.
+    public static func _render<Buffer: RangeReplaceableCollection>(
+        _ svg: Self,
+        into buffer: inout Buffer,
+        context: inout SVG.Context
+    ) where Buffer.Element == UInt8 {
+        buffer.append(contentsOf: svg.content.utf8)
+    }
+
+    public var body: Never { fatalError("body should not be called") }
 }

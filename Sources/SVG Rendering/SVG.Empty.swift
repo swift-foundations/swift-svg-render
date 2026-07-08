@@ -13,16 +13,18 @@ extension SVG {
     public struct Empty: SVG.View {
         /// Creates an empty SVG element.
         public init() {}
-
-        /// Renders nothing into the buffer.
-        public static func _render<Buffer: RangeReplaceableCollection>(
-            _ svg: Self,
-            into buffer: inout Buffer,
-            context: inout SVG.Context
-        ) where Buffer.Element == UInt8 {
-            // Intentionally empty
-        }
-
-        public var body: Never { fatalError("body should not be called") }
     }
+}
+
+extension SVG.Empty {
+    /// Renders nothing into the buffer.
+    public static func _render<Buffer: RangeReplaceableCollection>(
+        _ svg: Self,
+        into buffer: inout Buffer,
+        context: inout SVG.Context
+    ) where Buffer.Element == UInt8 {
+        // Intentionally empty
+    }
+
+    public var body: Never { fatalError("body should not be called") }
 }

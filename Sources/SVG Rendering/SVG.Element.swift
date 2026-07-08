@@ -108,35 +108,37 @@ extension SVG.Element: Sendable where Content: Sendable {}
 
 extension [UInt8] {
     /// SVG-specific escape sequences for attribute values.
-    public enum svg {
-        /// The escaped representation of a double quotation mark (`"`).
-        public static let doubleQuotationMark: [UInt8] = [
-            ASCII.Character.Graphic.ampersand, ASCII.Character.Graphic.q, ASCII.Character.Graphic.u,
-            ASCII.Character.Graphic.o, ASCII.Character.Graphic.t, ASCII.Character.Graphic.semicolon,
-        ]
+    public enum svg {}
+}
 
-        /// The escaped representation of an apostrophe (`'`).
-        public static let apostrophe: [UInt8] = [
-            ASCII.Character.Graphic.ampersand, ASCII.Character.Graphic.a, ASCII.Character.Graphic.p,
-            ASCII.Character.Graphic.o, ASCII.Character.Graphic.s, ASCII.Character.Graphic.semicolon,
-        ]
+extension [UInt8].svg {
+    /// The escaped representation of a double quotation mark (`"`).
+    public static let doubleQuotationMark: [UInt8] = [
+        ASCII.Character.Graphic.ampersand, ASCII.Character.Graphic.q, ASCII.Character.Graphic.u,
+        ASCII.Character.Graphic.o, ASCII.Character.Graphic.t, ASCII.Character.Graphic.semicolon,
+    ]
 
-        /// The escaped representation of an ampersand (`&`).
-        public static let ampersand: [UInt8] = [
-            ASCII.Character.Graphic.ampersand, ASCII.Character.Graphic.a, ASCII.Character.Graphic.m,
-            ASCII.Character.Graphic.p, ASCII.Character.Graphic.semicolon,
-        ]
+    /// The escaped representation of an apostrophe (`'`).
+    public static let apostrophe: [UInt8] = [
+        ASCII.Character.Graphic.ampersand, ASCII.Character.Graphic.a, ASCII.Character.Graphic.p,
+        ASCII.Character.Graphic.o, ASCII.Character.Graphic.s, ASCII.Character.Graphic.semicolon,
+    ]
 
-        /// The escaped representation of a less-than sign (`<`).
-        public static let lessThan: [UInt8] = [
-            ASCII.Character.Graphic.ampersand, ASCII.Character.Graphic.l, ASCII.Character.Graphic.t,
-            ASCII.Character.Graphic.semicolon,
-        ]
+    /// The escaped representation of an ampersand (`&`).
+    public static let ampersand: [UInt8] = [
+        ASCII.Character.Graphic.ampersand, ASCII.Character.Graphic.a, ASCII.Character.Graphic.m,
+        ASCII.Character.Graphic.p, ASCII.Character.Graphic.semicolon,
+    ]
 
-        /// The escaped representation of a greater-than sign (`>`).
-        public static let greaterThan: [UInt8] = [
-            ASCII.Character.Graphic.ampersand, ASCII.Character.Graphic.g, ASCII.Character.Graphic.t,
-            ASCII.Character.Graphic.semicolon,
-        ]
-    }
+    /// The escaped representation of a less-than sign (`<`).
+    public static let lessThan: [UInt8] = [
+        ASCII.Character.Graphic.ampersand, ASCII.Character.Graphic.l, ASCII.Character.Graphic.t,
+        ASCII.Character.Graphic.semicolon,
+    ]
+
+    /// The escaped representation of a greater-than sign (`>`).
+    public static let greaterThan: [UInt8] = [
+        ASCII.Character.Graphic.ampersand, ASCII.Character.Graphic.g, ASCII.Character.Graphic.t,
+        ASCII.Character.Graphic.semicolon,
+    ]
 }

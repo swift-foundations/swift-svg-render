@@ -39,10 +39,12 @@ extension SVG.Context {
             self.indentation = Array(indentation.utf8)
             self.newline = Array(newline.utf8)
         }
-
-        public static let `default` = Self()
-        public static let pretty = Self(indentation: "  ", newline: "\n")
     }
+}
+
+extension SVG.Context.Configuration {
+    public static let `default` = Self()
+    public static let pretty = Self(indentation: "  ", newline: "\n")
 }
 
 extension SVG.Context {

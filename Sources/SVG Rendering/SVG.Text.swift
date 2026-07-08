@@ -22,57 +22,59 @@ extension SVG {
         public init(_ text: String) {
             self.text = text
         }
+    }
+}
 
-        /// Renders the text content with proper XML escaping.
-        ///
-        /// This method escapes special characters (`&`, `<`, `>`, `"`, `'`) to prevent XML injection
-        /// and ensure the text renders correctly in an SVG document.
-        ///
-        /// - Parameters:
-        ///   - svg: The SVG text to render.
-        ///   - buffer: The buffer to render the SVG into.
-        ///   - context: The rendering context.
-        public static func _render<Buffer: RangeReplaceableCollection>(
-            _ svg: Self,
-            into buffer: inout Buffer,
-            context: inout SVG.Context
-        ) where Buffer.Element == UInt8 {
-            buffer.reserveCapacity(buffer.count + svg.text.utf8.count)
-            for byte in svg.text.utf8 {
-                switch byte {
-                case ASCII.Character.Graphic.ampersand:
-                    buffer.append(contentsOf: "&amp;".utf8)
+extension SVG.Text {
+    /// Renders the text content with proper XML escaping.
+    ///
+    /// This method escapes special characters (`&`, `<`, `>`, `"`, `'`) to prevent XML injection
+    /// and ensure the text renders correctly in an SVG document.
+    ///
+    /// - Parameters:
+    ///   - svg: The SVG text to render.
+    ///   - buffer: The buffer to render the SVG into.
+    ///   - context: The rendering context.
+    public static func _render<Buffer: RangeReplaceableCollection>(
+        _ svg: Self,
+        into buffer: inout Buffer,
+        context: inout SVG.Context
+    ) where Buffer.Element == UInt8 {
+        buffer.reserveCapacity(buffer.count + svg.text.utf8.count)
+        for byte in svg.text.utf8 {
+            switch byte {
+            case ASCII.Character.Graphic.ampersand:
+                buffer.append(contentsOf: "&amp;".utf8)
 
-                case ASCII.Character.Graphic.lessThanSign:
-                    buffer.append(contentsOf: "&lt;".utf8)
+            case ASCII.Character.Graphic.lessThanSign:
+                buffer.append(contentsOf: "&lt;".utf8)
 
-                case ASCII.Character.Graphic.greaterThanSign:
-                    buffer.append(contentsOf: "&gt;".utf8)
+            case ASCII.Character.Graphic.greaterThanSign:
+                buffer.append(contentsOf: "&gt;".utf8)
 
-                case ASCII.Character.Graphic.quotationMark:
-                    buffer.append(contentsOf: "&quot;".utf8)
+            case ASCII.Character.Graphic.quotationMark:
+                buffer.append(contentsOf: "&quot;".utf8)
 
-                case ASCII.Character.Graphic.apostrophe:
-                    buffer.append(contentsOf: "&apos;".utf8)
+            case ASCII.Character.Graphic.apostrophe:
+                buffer.append(contentsOf: "&apos;".utf8)
 
-                default:
-                    buffer.append(byte)
-                }
+            default:
+                buffer.append(byte)
             }
         }
+    }
 
-        /// This type uses direct rendering and doesn't have a body.
-        public var body: Never { fatalError("body should not be called") }
+    /// This type uses direct rendering and doesn't have a body.
+    public var body: Never { fatalError("body should not be called") }
 
-        /// Concatenates two SVG text components.
-        ///
-        /// - Parameters:
-        ///   - lhs: The left-hand side text.
-        ///   - rhs: The right-hand side text.
-        /// - Returns: A new SVG text component containing the concatenated text.
-        public static func + (lhs: Self, rhs: Self) -> Self {
-            SVG.Text(lhs.text + rhs.text)
-        }
+    /// Concatenates two SVG text components.
+    ///
+    /// - Parameters:
+    ///   - lhs: The left-hand side text.
+    ///   - rhs: The right-hand side text.
+    /// - Returns: A new SVG text component containing the concatenated text.
+    public static func + (lhs: Self, rhs: Self) -> Self {
+        SVG.Text(lhs.text + rhs.text)
     }
 }
 
