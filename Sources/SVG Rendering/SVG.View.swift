@@ -3,7 +3,7 @@
 //  swift-svg-rendering
 //
 
-public import Dictionary_Ordered_Primitives
+import Dictionary_Ordered_Primitives
 import Dimension_Primitives
 import Format_Primitives
 public import Render_Primitives

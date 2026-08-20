@@ -7,7 +7,7 @@
 //
 
 public import Dictionary_Ordered_Primitives
-public import Render_Primitives
+import Render_Primitives
 
 extension SVG {
     public struct Context: Sendable {
