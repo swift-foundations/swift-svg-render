@@ -1,8 +1,3 @@
-//
-//  SVG Rendering Performance Tests.swift
-//  swift-svg-rendering
-//
-
 import Testing
 
 @testable import SVG_Rendering
@@ -10,8 +5,6 @@ import Testing
 extension SVG {
     #Tests
 }
-
-// MARK: - Text Rendering
 
 extension SVG.Test.Performance {
 
@@ -37,8 +30,6 @@ extension SVG.Test.Performance {
         let _ = [UInt8](text)
     }
 }
-
-// MARK: - Element Rendering
 
 extension SVG.Test.Performance {
 
@@ -77,8 +68,6 @@ extension SVG.Test.Performance {
     }
 }
 
-// MARK: - Context Operations
-
 extension SVG.Test.Performance {
 
     @Test(.timed(iterations: 1000, warmup: 100))
@@ -98,8 +87,6 @@ extension SVG.Test.Performance {
     }
 }
 
-// MARK: - Attribute Chaining
-
 extension SVG.Test.Performance {
 
     @Test(.timed(iterations: 500, warmup: 50))
@@ -115,8 +102,6 @@ extension SVG.Test.Performance {
         let _ = [UInt8](styled)
     }
 }
-
-// MARK: - Document Throughput
 
 extension SVG.Test.Performance {
 
@@ -151,8 +136,6 @@ extension SVG.Test.Performance {
         let _ = String(decoding: bytes, as: UTF8.self)
     }
 }
-
-// MARK: - Pretty Printing
 
 extension SVG.Test.Performance {
 

@@ -1,14 +1,8 @@
-//
-//  SVG.View.swift
-//  swift-svg-rendering
-//
-
 import Dictionary_Ordered_Primitives
 import Dimension_Primitives
 import Format_Primitives
 public import Render_Primitives
 
-/// A namespace for SVG-related types.
 public enum SVG {}
 
 extension SVG {
@@ -24,11 +18,6 @@ extension SVG {
     }
 }
 
-// reason: `Content: Self` here is not valid Swift in this where-clause
-// conformance position ("type 'Self.Content' constrained to non-protocol,
-// non-class type 'Self'") — confirmed by CI breakage across this package
-// and downstream swift-pdf when swiftlint --fix applied it (commit 60e00fd).
-// swiftlint:disable:next prefer_self_in_static_references
 extension SVG.View where Content: SVG.View {
     @inlinable
     @_disfavoredOverload

@@ -1,8 +1,3 @@
-//
-//  SVG.Raw Tests.swift
-//  swift-svg-rendering
-//
-
 import SVG_Rendering_Test_Support
 import Testing
 

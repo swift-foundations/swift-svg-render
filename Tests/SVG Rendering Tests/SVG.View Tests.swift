@@ -1,12 +1,6 @@
-//
-//  SVG.View Tests.swift
-//  swift-svg-rendering
-//
-
 import SVG_Rendering_Test_Support
 import Testing
 
-// SVG.View is a protocol — use parallel namespace [TEST-004]
 enum SVGViewTests {
 
     static func render(_ view: some SVG.View) -> String {

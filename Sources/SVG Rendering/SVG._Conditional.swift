@@ -1,8 +1,3 @@
-//
-//  SVG._Conditional.swift
-//  swift-svg-rendering
-//
-
 public import Render_Primitives
 
 extension Render.Conditional: SVG.View where First: SVG.View, Second: SVG.View {

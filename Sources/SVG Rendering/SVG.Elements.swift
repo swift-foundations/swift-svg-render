@@ -1,18 +1,9 @@
-//
-//  SVG.Elements.swift
-//  swift-svg-rendering
-//
-//  callAsFunction extensions for W3C SVG types
-//
-
 import Dictionary_Ordered_Primitives
 import Format_Primitives
 public import SVG_Standard
 
-// MARK: - Basic Shapes
-
 extension SVG_Standard.Shapes.Circle {
-    /// Renders the circle element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -24,12 +15,7 @@ extension SVG_Standard.Shapes.Circle {
 }
 
 extension SVG_Standard.Shapes.Rectangle {
-    /// Renders the rect element with optional child content.
-    ///
-    /// Corner radii (rx, ry) can be applied using modifiers:
-    /// ```swift
-    /// rect().rx(5).ry(5)
-    /// ```
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -42,7 +28,7 @@ extension SVG_Standard.Shapes.Rectangle {
 }
 
 extension SVG_Standard.Shapes.Ellipse {
-    /// Renders the ellipse element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -55,7 +41,7 @@ extension SVG_Standard.Shapes.Ellipse {
 }
 
 extension SVG_Standard.Shapes.Line {
-    /// Renders the line element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -68,7 +54,7 @@ extension SVG_Standard.Shapes.Line {
 }
 
 extension SVG_Standard.Shapes.Polygon {
-    /// Renders the polygon element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -78,7 +64,7 @@ extension SVG_Standard.Shapes.Polygon {
 }
 
 extension SVG_Standard.Shapes.Polyline {
-    /// Renders the polyline element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -87,10 +73,8 @@ extension SVG_Standard.Shapes.Polyline {
     }
 }
 
-// MARK: - Paths
-
 extension SVG_Standard.Paths.Path {
-    /// Renders the path element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -100,10 +84,8 @@ extension SVG_Standard.Paths.Path {
     }
 }
 
-// MARK: - Document Structure
-
 extension SVG_Standard.Document.SVG {
-    /// Renders the svg element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -117,7 +99,7 @@ extension SVG_Standard.Document.SVG {
 }
 
 extension SVG_Standard.Document.Group {
-    /// Renders the g element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -127,7 +109,7 @@ extension SVG_Standard.Document.Group {
 }
 
 extension SVG_Standard.Document.Defs {
-    /// Renders the defs element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -136,7 +118,7 @@ extension SVG_Standard.Document.Defs {
 }
 
 extension SVG_Standard.Document.Symbol {
-    /// Renders the symbol element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -154,7 +136,7 @@ extension SVG_Standard.Document.Symbol {
 }
 
 extension SVG_Standard.Document.Use {
-    /// Renders the use element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -167,10 +149,8 @@ extension SVG_Standard.Document.Use {
     }
 }
 
-// MARK: - Text
-
 extension SVG_Standard.Text.Text {
-    /// Renders the text element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -188,7 +168,7 @@ extension SVG_Standard.Text.Text {
 }
 
 extension SVG_Standard.Text.TSpan {
-    /// Renders the tspan element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -205,10 +185,8 @@ extension SVG_Standard.Text.TSpan {
     }
 }
 
-// MARK: - Paint Servers (Gradients & Patterns)
-
 extension SVG_Standard.PaintServers.LinearGradient {
-    /// Renders the linearGradient element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -226,7 +204,7 @@ extension SVG_Standard.PaintServers.LinearGradient {
 }
 
 extension SVG_Standard.PaintServers.RadialGradient {
-    /// Renders the radialGradient element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -246,7 +224,7 @@ extension SVG_Standard.PaintServers.RadialGradient {
 }
 
 extension SVG_Standard.PaintServers.Stop {
-    /// Renders the stop element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -258,7 +236,7 @@ extension SVG_Standard.PaintServers.Stop {
 }
 
 extension SVG_Standard.PaintServers.Pattern {
-    /// Renders the pattern element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -277,10 +255,8 @@ extension SVG_Standard.PaintServers.Pattern {
     }
 }
 
-// MARK: - Painting (Clipping, Masking, Markers)
-
 extension SVG_Standard.Painting.ClipPath {
-    /// Renders the clipPath element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -291,7 +267,7 @@ extension SVG_Standard.Painting.ClipPath {
 }
 
 extension SVG_Standard.Painting.Mask {
-    /// Renders the mask element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -307,7 +283,7 @@ extension SVG_Standard.Painting.Mask {
 }
 
 extension SVG_Standard.Painting.Marker {
-    /// Renders the marker element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -324,10 +300,8 @@ extension SVG_Standard.Painting.Marker {
     }
 }
 
-// MARK: - Embedded Content
-
 extension SVG_Standard.Embedded.Image {
-    /// Renders the image element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -342,7 +316,7 @@ extension SVG_Standard.Embedded.Image {
 }
 
 extension SVG_Standard.Embedded.ForeignObject {
-    /// Renders the foreignObject element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -354,10 +328,8 @@ extension SVG_Standard.Embedded.ForeignObject {
     }
 }
 
-// MARK: - Scripting
-
 extension SVG_Standard.Scripting.Switch {
-    /// Renders the switch element with optional child content.
+
     public func callAsFunction<Content: SVG.View>(
         @SVG.Builder _ content: () -> Content = { SVG.Empty() }
     ) -> some SVG.View {
@@ -365,38 +337,28 @@ extension SVG_Standard.Scripting.Switch {
     }
 }
 
-// MARK: - Optional Attribute Helper
-
 extension SVG.View {
-    /// Sets the id attribute if value is not nil.
+
     func id(_ value: String?) -> SVG._Attributes<Self> {
         guard let value else { return SVG._Attributes(content: self, attributes: .init()) }
         return attribute("id", value)
     }
 
-    /// Sets the fill-rule attribute from a string value.
     func fillRule(_ value: String?) -> SVG._Attributes<Self> {
         guard let value else { return SVG._Attributes(content: self, attributes: .init()) }
         return attribute("fill-rule", value)
     }
 
-    /// Sets the cx attribute for gradients (String version).
     func cx(_ value: String?) -> SVG._Attributes<Self> {
         guard let value else { return SVG._Attributes(content: self, attributes: .init()) }
         return attribute("cx", value)
     }
 
-    /// Sets the cy attribute for gradients (String version).
     func cy(_ value: String?) -> SVG._Attributes<Self> {
         guard let value else { return SVG._Attributes(content: self, attributes: .init()) }
         return attribute("cy", value)
     }
 }
-
-// MARK: - SVG.View Conformances
-// Direct conformances for W3C SVG types.
-// Geometry types conform to SVG.View for direct DSL usage, and also provide .svg
-// for explicit SVG-specific operations (transforms, etc.) separate from math operations.
 
 extension Geometry.Ball: SVG.View where Scalar == Double, Space == W3C_SVG.Space, N == 2 {
     public var body: some SVG.View {
@@ -427,8 +389,6 @@ extension Geometry.Polygon: SVG.View where Scalar == Double, Space == W3C_SVG.Sp
         svg
     }
 }
-
-// Note: Ellipse, Line, Polygon conformances are now handled via Geometry type extensions above
 
 extension SVG_Standard.Shapes.Polyline: SVG.View {
     public var body: some SVG.View {

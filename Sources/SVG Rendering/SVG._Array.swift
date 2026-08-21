@@ -1,8 +1,3 @@
-//
-//  SVG._Array.swift
-//  swift-svg-rendering
-//
-
 extension Array: SVG.View where Element: SVG.View {
     public var body: Never { fatalError("body should not be called") }
 

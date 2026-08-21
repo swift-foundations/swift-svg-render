@@ -1,16 +1,6 @@
-//
-//  SVG.GeometryContext.swift
-//  swift-svg-rendering
-//
-//  SVG.View conformances for geometry SVGContext wrappers.
-//  All SVG rendering goes through .svg accessor, keeping geometry types pure math.
-//
-
 import Dictionary_Ordered_Primitives
 import Format_Primitives
 public import SVG_Standard
-
-// MARK: - Circle SVGContext
 
 extension Geometry.Ball.SVGContext: SVG.View
 where Scalar == Double, Space == W3C_SVG.Space, N == 2 {
@@ -21,40 +11,27 @@ where Scalar == Double, Space == W3C_SVG.Space, N == 2 {
             .r(circle.r)
     }
 
-    /// Applies an SVG translate transform.
-    ///
-    /// Unlike `circle.translated(by:)` which returns a new circle with different coordinates,
-    /// this method returns an SVG view with a `transform="translate(...)"` attribute.
     public func translated(by vector: W3C_SVG2.Vector) -> some SVG.View {
         self.translate(x: vector.dx.underlying, y: vector.dy.underlying)
     }
 
-    /// Applies an SVG scale transform.
-    ///
-    /// Unlike `circle.scaled(by:)` which returns a new circle with different radius,
-    /// this method returns an SVG view with a `transform="scale(...)"` attribute.
     public func scaled(by factor: Double) -> some SVG.View {
         self.scale(x: factor)
     }
 
-    /// Applies an SVG scale transform with different x and y factors.
     public func scaled(x: Double, y: Double) -> some SVG.View {
         self.scale(x: x, y: y)
     }
 
-    /// Applies an SVG rotate transform.
     public func rotated(by angle: W3C_SVG2.Degrees) -> some SVG.View {
         self.rotate(angle.underlying)
     }
 
-    /// Applies an SVG rotate transform around a center point.
     public func rotated(by angle: W3C_SVG2.Degrees, around center: W3C_SVG2.Point) -> some SVG.View
     {
         self.rotate(angle.underlying, cx: center.x.underlying, cy: center.y.underlying)
     }
 }
-
-// MARK: - Rectangle SVGContext
 
 extension Geometry.Orthotope.SVGContext: SVG.View
 where Scalar == Double, Space == W3C_SVG.Space, N == 2 {
@@ -66,44 +43,35 @@ where Scalar == Double, Space == W3C_SVG.Space, N == 2 {
             .height(rectangle.height)
     }
 
-    /// Applies an SVG translate transform.
     public func translated(by vector: W3C_SVG2.Vector) -> some SVG.View {
         self.translate(x: vector.dx.underlying, y: vector.dy.underlying)
     }
 
-    /// Applies an SVG scale transform.
     public func scaled(by factor: Double) -> some SVG.View {
         self.scale(x: factor)
     }
 
-    /// Applies an SVG scale transform with different x and y factors.
     public func scaled(x: Double, y: Double) -> some SVG.View {
         self.scale(x: x, y: y)
     }
 
-    /// Applies an SVG rotate transform.
     public func rotated(by angle: W3C_SVG2.Degrees) -> some SVG.View {
         self.rotate(angle.underlying)
     }
 
-    /// Applies an SVG rotate transform around a center point.
     public func rotated(by angle: W3C_SVG2.Degrees, around center: W3C_SVG2.Point) -> some SVG.View
     {
         self.rotate(angle.underlying, cx: center.x.underlying, cy: center.y.underlying)
     }
 
-    /// Sets the rx attribute for rounded corners.
     public func rx(_ value: W3C_SVG2.Width) -> some SVG.View {
         SVG._Attributes(content: self, attributes: .init()).rx(value)
     }
 
-    /// Sets the ry attribute for rounded corners.
     public func ry(_ value: W3C_SVG2.Height) -> some SVG.View {
         SVG._Attributes(content: self, attributes: .init()).ry(value)
     }
 }
-
-// MARK: - Ellipse SVGContext
 
 extension Geometry.Ellipse.SVGContext: SVG.View
 where Scalar == Double, Space == W3C_SVG.Space {
@@ -115,23 +83,18 @@ where Scalar == Double, Space == W3C_SVG.Space {
             .ry(W3C_SVG2.Height(ellipse.semiMinor.underlying))
     }
 
-    /// Applies an SVG translate transform.
     public func translated(by vector: W3C_SVG2.Vector) -> some SVG.View {
         self.translate(x: vector.dx.underlying, y: vector.dy.underlying)
     }
 
-    /// Applies an SVG scale transform.
     public func scaled(by factor: Double) -> some SVG.View {
         self.scale(x: factor)
     }
 
-    /// Applies an SVG rotate transform.
     public func rotated(by angle: W3C_SVG2.Degrees) -> some SVG.View {
         self.rotate(angle.underlying)
     }
 }
-
-// MARK: - Line SVGContext
 
 extension Geometry.Line.Segment.SVGContext: SVG.View
 where Scalar == Double, Space == W3C_SVG.Space {
@@ -144,23 +107,18 @@ where Scalar == Double, Space == W3C_SVG.Space {
             .y2(el.y2)
     }
 
-    /// Applies an SVG translate transform.
     public func translated(by vector: W3C_SVG2.Vector) -> some SVG.View {
         self.translate(x: vector.dx.underlying, y: vector.dy.underlying)
     }
 
-    /// Applies an SVG scale transform.
     public func scaled(by factor: Double) -> some SVG.View {
         self.scale(x: factor)
     }
 
-    /// Applies an SVG rotate transform.
     public func rotated(by angle: W3C_SVG2.Degrees) -> some SVG.View {
         self.rotate(angle.underlying)
     }
 }
-
-// MARK: - Polygon SVGContext
 
 extension Geometry.Polygon.SVGContext: SVG.View
 where Scalar == Double, Space == W3C_SVG.Space {
@@ -170,23 +128,18 @@ where Scalar == Double, Space == W3C_SVG.Space {
             .points(el.points)
     }
 
-    /// Applies an SVG translate transform.
     public func translated(by vector: W3C_SVG2.Vector) -> some SVG.View {
         self.translate(x: vector.dx.underlying, y: vector.dy.underlying)
     }
 
-    /// Applies an SVG scale transform.
     public func scaled(by factor: Double) -> some SVG.View {
         self.scale(x: factor)
     }
 
-    /// Applies an SVG rotate transform.
     public func rotated(by angle: W3C_SVG2.Degrees) -> some SVG.View {
         self.rotate(angle.underlying)
     }
 }
-
-// MARK: - Path SVGContext
 
 extension Geometry.Path.SVGContext: SVG.View
 where Scalar == Double, Space == W3C_SVG.Space {
@@ -196,17 +149,14 @@ where Scalar == Double, Space == W3C_SVG.Space {
             .d(el.d)
     }
 
-    /// Applies an SVG translate transform.
     public func translated(by vector: W3C_SVG2.Vector) -> some SVG.View {
         self.translate(x: vector.dx.underlying, y: vector.dy.underlying)
     }
 
-    /// Applies an SVG scale transform.
     public func scaled(by factor: Double) -> some SVG.View {
         self.scale(x: factor)
     }
 
-    /// Applies an SVG rotate transform.
     public func rotated(by angle: W3C_SVG2.Degrees) -> some SVG.View {
         self.rotate(angle.underlying)
     }

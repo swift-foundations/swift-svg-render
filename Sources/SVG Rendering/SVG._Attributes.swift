@@ -1,12 +1,6 @@
-//
-//  SVG._Attributes.swift
-//  swift-svg-rendering
-//
-
 public import Dictionary_Ordered_Primitives
 import Render_Primitives
 
-/// A wrapper that adds attributes to an SVG element.
 extension SVG {
     public struct _Attributes<Content: SVG.View>: SVG.View {
         let content: Content
@@ -35,7 +29,7 @@ extension SVG {
 }
 
 extension SVG._Attributes {
-    /// Adds another attribute to the element.
+
     public func attribute(_ name: String, _ value: String? = "") -> SVG._Attributes<Content> {
         var newAttributes = self.attributes
         if let value {

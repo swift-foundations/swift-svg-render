@@ -1,10 +1,3 @@
-//
-//  Test.Snapshot.Strategy+SVG.swift
-//  swift-svg-rendering
-//
-//  Snapshot strategy for SVG rendering.
-//
-
 import SVG_Rendering
 import Test_Snapshot_Primitives
 

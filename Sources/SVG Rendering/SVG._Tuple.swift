@@ -1,8 +1,3 @@
-//
-//  SVG._Tuple.swift
-//  swift-svg-rendering
-//
-
 public import Render_Primitives
 
 extension Render._Tuple: SVG.View where repeat each Content: SVG.View {

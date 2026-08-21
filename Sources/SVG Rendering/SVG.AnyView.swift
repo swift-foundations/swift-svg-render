@@ -1,15 +1,3 @@
-//
-//  SVG.AnyView.swift
-//  swift-svg-renderable
-//
-//  Created by Coen ten Thije Boonkkamp on 26/11/2025.
-//
-
-// swiftlint:disable no_any_protocol_existential
-// reason: AnyView is SVG's type-erasure wrapper — its stored `base` and
-// both initializers must accept any conforming SVG.View at the call site;
-// `some SVG.View` would fix a single concrete type and defeat the eraser.
-/// Type-erased SVG element that can hold any SVG content.
 extension SVG {
     public struct AnyView: SVG.View {
         let base: any SVG.View
@@ -40,4 +28,3 @@ extension SVG.AnyView {
         self = .init(closure())
     }
 }
-// swiftlint:enable no_any_protocol_existential

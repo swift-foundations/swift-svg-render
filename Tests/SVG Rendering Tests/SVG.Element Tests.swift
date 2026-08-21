@@ -1,12 +1,6 @@
-//
-//  SVG.Element Tests.swift
-//  swift-svg-rendering
-//
-
 import SVG_Rendering_Test_Support
 import Testing
 
-// SVG.Element is generic — use parallel namespace [TEST-004]
 enum SVGElementTests {
 
     static func render<V: SVG.View>(_ view: V) -> String {

@@ -1,8 +1,3 @@
-//
-//  Never+SVG.swift
-//  swift-svg-rendering
-//
-
 extension Never: SVG.View {
     @inlinable
     public static func _render<Buffer: RangeReplaceableCollection>(

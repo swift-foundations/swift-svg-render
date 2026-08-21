@@ -1,12 +1,6 @@
-//
-//  SVG.Group Tests.swift
-//  swift-svg-rendering
-//
-
 import SVG_Rendering_Test_Support
 import Testing
 
-// SVG.Group is generic — use parallel namespace [TEST-004]
 enum SVGGroupTests {
 
     static func render(_ view: some SVG.View) -> String {

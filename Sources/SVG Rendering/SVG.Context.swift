@@ -1,23 +1,13 @@
-//
-//  SVG.Context.swift
-//  swift-svg-rendering
-//
-//  Rendering context for SVG streaming.
-//  Holds state (attributes, indentation) separate from the output buffer.
-//
-
 public import Dictionary_Ordered_Primitives
 import Render_Primitives
 
 extension SVG {
     public struct Context: Sendable {
-        /// The current set of attributes to apply to the next SVG element.
+
         public var attributes: Attributes
 
-        /// Configuration for rendering, including formatting options.
         public let configuration: SVG.Context.Configuration
 
-        /// The current indentation level for pretty-printing.
         public var currentIndentation: [UInt8]
     }
 }

@@ -1,8 +1,3 @@
-//
-//  SVG Rendering Snapshot Tests.swift
-//  swift-svg-rendering
-//
-
 import SVG_Rendering_Test_Support
 import SVG_Standard
 import Testing
@@ -13,8 +8,6 @@ import Tests_Inline_Snapshot
 extension SVG {
     #Tests
 }
-
-// MARK: - Renderable Snapshots
 
 extension SVG.Test.Snapshot {
 
@@ -152,8 +145,6 @@ extension SVG.Test.Snapshot {
         )
     }
 }
-
-// MARK: - Circle Geometry + SVG Context Snapshots
 
 extension SVG.Test.Snapshot {
 
@@ -374,8 +365,6 @@ extension SVG.Test.Snapshot {
         )
     }
 }
-
-// MARK: - Document Snapshots
 
 extension SVG.Test.Snapshot {
 

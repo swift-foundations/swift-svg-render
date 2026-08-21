@@ -1,12 +1,6 @@
-//
-//  SVG.Attributes Tests.swift
-//  swift-svg-rendering
-//
-
 import SVG_Rendering_Test_Support
 import Testing
 
-// SVG._Attributes is generic — use parallel namespace [TEST-004]
 enum SVGAttributesTests {
 
     static func render<V: SVG.View>(_ view: V) -> String {
